@@ -2,6 +2,8 @@ package com.spring.springsecurityauthclient.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,13 +13,16 @@ public class UserController {
     @GetMapping("/users")
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<String> getUser() {
-        return ResponseEntity.ok("User details");
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        return ResponseEntity.ok("User details: "+ authentication.getName());
     }
 
     @GetMapping("/myAccount")
     @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<String> getMyAccount() {
-        return ResponseEntity.ok("User getMyAccount");
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return ResponseEntity.ok("User getMyAccount " + authentication.getName());
     }
 
     @GetMapping("/dealer")
