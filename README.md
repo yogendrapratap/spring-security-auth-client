@@ -2,6 +2,8 @@
 
 A Spring Boot application demonstrating authentication and authorization using JWT, custom security filters, and exception handling. The project is configured to work with MySQL and integrates with an OAuth2 resource server.
 
+You can use https://github.com/yogendrapratap/spring-auth-server.git as an authentication/authorization server.
+
 ## Features
 
 - JWT-based authentication and authorization
